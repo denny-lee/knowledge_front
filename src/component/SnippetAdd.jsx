@@ -21,9 +21,11 @@ const SnippetAdd = React.createClass({
               return;                
           }
 
-          const respData = requestData(config.saveSnippet, values, 'POST');
+          const param = Object.assign({}, values, {content: values.content_1});
+          const respData = requestData(config.saveSnippet, param, 'POST');
           if (respData) {
               message.success('新增成功');
+              this.props.form.resetFields();
           } else {
               if(respData.content != undefined && respData.content != "") {
                 message.error('提交失败,' + respData.content);
@@ -43,7 +45,7 @@ const SnippetAdd = React.createClass({
                                             message: '请输入tag'
                                         }]
                                     });
-    const contentProp = getFieldProps('content', {
+    const contentProp = getFieldProps('content_1', {
                                         rules: [{
                                             required: true,
                                             message: '请输入content'
@@ -53,14 +55,14 @@ const SnippetAdd = React.createClass({
     const langProp = getFieldProps('language');
 
     const formItemLayout = {
-        labelCol: { span: 6 },
-        wrapperCol: { span: 18 },
+        labelCol: { span: 4 },
+        wrapperCol: { span: 20 },
     };
 
     return (
       <Form horizontal onSubmit={this.submitHandler} form={this.props.form}>
-        <Row>
-            <Col span={8}>
+        <Row type="flex" justify="space-around" align="middle">
+            <Col span={20}>
                 <FormItem
                     {...formItemLayout}
                     label="tag："
@@ -68,7 +70,9 @@ const SnippetAdd = React.createClass({
                     <Input {...tagProp} placeholder="react java c++" />
                 </FormItem>
             </Col>
-            <Col span={6}>
+        </Row>
+        <Row type="flex" justify="space-around" align="middle">
+            <Col span={20}>
                 <FormItem
                     {...formItemLayout}
                     label="language："
@@ -77,18 +81,18 @@ const SnippetAdd = React.createClass({
                 </FormItem>
             </Col>
         </Row>
-        <Row>
-            <Col span={24}>
+        <Row type="flex" justify="space-around" align="middle">
+            <Col span={20}>
                 <FormItem
                     {...formItemLayout}
                     label="content："
                 >
-                    <Input {...contentProp}/>
+                    <Input type="textarea" rows="18" {...contentProp}/>
                 </FormItem>
             </Col>
         </Row>
-        <Row>
-            <Col span={24}>
+        <Row type="flex" justify="space-around" align="middle">
+            <Col span={20}>
                 <FormItem
                     {...formItemLayout}
                     label="description："
@@ -97,7 +101,7 @@ const SnippetAdd = React.createClass({
                 </FormItem>
             </Col>
         </Row>
-        <Row>
+        <Row type="flex" justify="space-around" align="middle">
             <Col>
                 <FormItem>
                     <Button type="primary" htmlType="submit">确定</Button>
