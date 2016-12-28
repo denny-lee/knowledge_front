@@ -7,7 +7,7 @@ import config from "../config/config";
 const FormItem = Form.Item;
 
 
-const SnippetAdd = React.createClass({
+const FaqAdd = React.createClass({
   
   resetHandler(e) {
       e.preventDefault();
@@ -22,7 +22,7 @@ const SnippetAdd = React.createClass({
           }
 
           const param = Object.assign({}, values, {content: values.content_1});
-          const respData = requestData(config.saveSnippet, param, 'POST');
+          const respData = requestData(config.saveFaq, param, 'POST');
           if (respData) {
               message.success('新增成功');
               this.props.form.resetFields();
@@ -39,27 +39,26 @@ const SnippetAdd = React.createClass({
   render() {
     const { getFieldProps } = this.props.form;
 
-    const tagProp = getFieldProps('tag', {
+    const questionProp = getFieldProps('question', {
                                         rules: [{
                                             required: true,
-                                            max: 200,
-                                            message: '请输入tag，字符数少于200'
+                                            max: 1000,
+                                            message: '请输入question，字符数少于1000'
                                         }]
                                     });
-    const contentProp = getFieldProps('content_1', {
+    const answerProp = getFieldProps('answer', {
                                         rules: [{
-                                            required: true,
                                             max: 2000,
-                                            message: '请输入content，字符数少于2000'
+                                            message: '字符数少于2000'
                                         }]
                                     });
-    const descProp = getFieldProps('description', {
+    const tagProp = getFieldProps('tag', {
                                         rules: [{
                                             max: 200,
                                             message: '字符数少于200'
                                         }]
                                     });
-    const langProp = getFieldProps('language', {
+    const categProp = getFieldProps('categ', {
                                         rules: [{
                                             max: 45,
                                             message: '字符数少于45'
@@ -87,9 +86,9 @@ const SnippetAdd = React.createClass({
             <Col span={20}>
                 <FormItem
                     {...formItemLayout}
-                    label="language："
+                    label="category："
                 >
-                    <Input {...langProp} placeholder="java" />
+                    <Input {...categProp} placeholder="框架" />
                 </FormItem>
             </Col>
         </Row>
@@ -97,9 +96,9 @@ const SnippetAdd = React.createClass({
             <Col span={20}>
                 <FormItem
                     {...formItemLayout}
-                    label="content："
+                    label="question："
                 >
-                    <Input type="textarea" rows="18" {...contentProp}/>
+                    <Input {...questionProp}/>
                 </FormItem>
             </Col>
         </Row>
@@ -107,9 +106,9 @@ const SnippetAdd = React.createClass({
             <Col span={20}>
                 <FormItem
                     {...formItemLayout}
-                    label="description："
+                    label="answer："
                 >
-                    <Input {...descProp} placeholder="描述"/>
+                    <Input type="textarea" rows="8" {...answerProp} />
                 </FormItem>
             </Col>
         </Row>
@@ -126,6 +125,6 @@ const SnippetAdd = React.createClass({
   },
 });
 
-const SnippetAddForm = Form.create()(SnippetAdd);
+const FaqAddForm = Form.create()(FaqAdd);
 
-export default SnippetAddForm;
+export default FaqAddForm;
