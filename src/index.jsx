@@ -11,6 +11,7 @@ import NotionSearch from './component/NotionSearch';
 import NotionAdd from './component/NotionAdd';
 import NoticeSearch from './component/SnippetSearch';
 import NoticeAdd from './component/NoticeAdd';
+import TodoTags from './component/TodoTags';
 
 import 'antd/dist/antd.css';
 import './index.less';
@@ -28,6 +29,7 @@ ReactDOM.render(
 	        <Route path="add-notion" component={NotionAdd} />
 	        <Route path="search-notice" component={NoticeSearch} />
 	        <Route path="add-notice" component={NoticeAdd} />
+	        <Route path="my-tags" component={TodoTags} />
 	    </Route>
     </Router>,
   	document.getElementById('root')

@@ -38,8 +38,10 @@ const FaqSearch = React.createClass({
 
           	const param = Object.assign({}, values);
           	const respData = requestData(config.searchFaq, param, 'POST');
-          	if (respData && respData.length > 0) {
-          		this.setState({ itemList : respData});
+          	if (respData) {
+                if(respData.length > 0) {
+           		     this.setState({ itemList : respData});
+                }
               	message.success('搜索成功');
           	} else {
               	if(respData.content != undefined && respData.content != "") {

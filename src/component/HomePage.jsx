@@ -29,6 +29,7 @@ const HomePage = React.createClass({
                 <Menu.Item><a href="#/add-notice"><Icon type="plus" />新增注意事项</a></Menu.Item>
                 <Menu.Item><a href="#/search-notice"><Icon type="search" />查询注意事项</a></Menu.Item>
             </SubMenu>
+            <Menu.Item><a href="#/my-tags"><Icon type="tag" />标签库</a></Menu.Item>
           </Menu>
         </div>
         <div>{this.props.children}</div>
